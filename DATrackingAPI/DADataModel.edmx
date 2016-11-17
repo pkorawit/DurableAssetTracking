@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DATrackingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ItemCondition">
+          <Key>
+            <PropertyRef Name="ConditionID" />
+          </Key>
+          <Property Name="ConditionID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemDetail">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Desciption" Type="nvarchar(max)" />
+          <Property Name="AdditionalDetail" Type="nvarchar(max)" />
+          <Property Name="Price" Type="float" />
+          <Property Name="BudgetSource" Type="nvarchar" MaxLength="50" />
+          <Property Name="FiscalYear" Type="nvarchar" MaxLength="4" />
+          <Property Name="Group1" Type="nvarchar" MaxLength="100" />
+          <Property Name="DAType1" Type="nvarchar" MaxLength="100" />
+          <Property Name="DAType2" Type="nvarchar" MaxLength="100" />
+          <Property Name="SupplierName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CheckInDate" Type="date" />
+          <Property Name="WarrantyYear" Type="nvarchar" MaxLength="50" />
+          <Property Name="WarrantyExpiredDate" Type="date" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ImportSource" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ItemStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ItemTracking">
+          <Key>
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="FiscalYear" />
+          </Key>
+          <Property Name="ItemID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VerifiedDate" Type="date" />
+          <Property Name="FiscalYear" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="Owner" Type="nvarchar" MaxLength="100" />
+          <Property Name="ConditionID" Type="nvarchar" MaxLength="100" />
+          <Property Name="StatusID" Type="nvarchar" MaxLength="100" />
+          <Property Name="CommittedDate" Type="date" />
+        </EntityType>
+        <EntityContainer Name="DATrackingModelStoreContainer">
+          <EntitySet Name="ItemCondition" EntityType="Self.ItemCondition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemDetail" EntityType="Self.ItemDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemStatus" EntityType="Self.ItemStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemTracking" EntityType="Self.ItemTracking" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DATrackingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ItemCondition">
+          <Key>
+            <PropertyRef Name="ConditionID" />
+          </Key>
+          <Property Name="ConditionID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemDetail">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Desciption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="BudgetSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FiscalYear" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Group1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DAType1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DAType2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SupplierName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInDate" Type="DateTime" Precision="0" />
+          <Property Name="WarrantyYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WarrantyExpiredDate" Type="DateTime" Precision="0" />
+          <Property Name="ImagePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ImportSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ItemStatu">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ItemTracking">
+          <Key>
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="FiscalYear" />
+          </Key>
+          <Property Name="ItemID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VerifiedDate" Type="DateTime" Precision="0" />
+          <Property Name="FiscalYear" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Owner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ConditionID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StatusID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CommittedDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ItemConditions" EntityType="Self.ItemCondition" />
+          <EntitySet Name="ItemDetails" EntityType="Self.ItemDetail" />
+          <EntitySet Name="ItemStatus" EntityType="Self.ItemStatu" />
+          <EntitySet Name="ItemTrackings" EntityType="Self.ItemTracking" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DATrackingModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="ItemConditions">
+            <EntityTypeMapping TypeName="DATrackingModel.ItemCondition">
+              <MappingFragment StoreEntitySet="ItemCondition">
+                <ScalarProperty Name="ConditionID" ColumnName="ConditionID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemDetails">
+            <EntityTypeMapping TypeName="DATrackingModel.ItemDetail">
+              <MappingFragment StoreEntitySet="ItemDetail">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="Desciption" ColumnName="Desciption" />
+                <ScalarProperty Name="AdditionalDetail" ColumnName="AdditionalDetail" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="BudgetSource" ColumnName="BudgetSource" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="Group1" ColumnName="Group1" />
+                <ScalarProperty Name="DAType1" ColumnName="DAType1" />
+                <ScalarProperty Name="DAType2" ColumnName="DAType2" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+                <ScalarProperty Name="WarrantyYear" ColumnName="WarrantyYear" />
+                <ScalarProperty Name="WarrantyExpiredDate" ColumnName="WarrantyExpiredDate" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="ImportSource" ColumnName="ImportSource" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemStatus">
+            <EntityTypeMapping TypeName="DATrackingModel.ItemStatu">
+              <MappingFragment StoreEntitySet="ItemStatus">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemTrackings">
+            <EntityTypeMapping TypeName="DATrackingModel.ItemTracking">
+              <MappingFragment StoreEntitySet="ItemTracking">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="VerifiedDate" ColumnName="VerifiedDate" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="ConditionID" ColumnName="ConditionID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="CommittedDate" ColumnName="CommittedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

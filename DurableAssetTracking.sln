@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DATrackingWeb", "DATrackingWeb\DATrackingWeb.csproj", "{9DD91D48-C189-4247-9D67-E28D0D911F25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DATrackingAPI", "DATrackingAPI\DATrackingAPI.csproj", "{E7C7FABB-B156-4DC5-AA03-0B9F5F8C609C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9DD91D48-C189-4247-9D67-E28D0D911F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DD91D48-C189-4247-9D67-E28D0D911F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DD91D48-C189-4247-9D67-E28D0D911F25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7C7FABB-B156-4DC5-AA03-0B9F5F8C609C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7C7FABB-B156-4DC5-AA03-0B9F5F8C609C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7C7FABB-B156-4DC5-AA03-0B9F5F8C609C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7C7FABB-B156-4DC5-AA03-0B9F5F8C609C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
