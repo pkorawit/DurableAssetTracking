@@ -11,7 +11,7 @@
                     <input type="text" class="form-control" id="keyword" placeholder="ค้นหาครุภัณฑ์ด้วยรหัสเช่น CC/66-2-01/59" >
                     <span class="input-group-btn">
                                     <button class="btn btn-danger" type="button">
-                                        <span class=" glyphicon glyphicon-search"></span>
+                                        <span class="glyphicon glyphicon-search"></span>
                                     </button>
                     </span>
                 </div>
