@@ -25,6 +25,14 @@ namespace DATrackingWeb
                 if (Request.QueryString["id"] != null)
                 {
                     keyword = Request.QueryString["id"].ToString();
+                    param = "id";
+                    SearchDAItems(keyword);
+                }
+
+                if (Request.QueryString["keyword"] != null)
+                {
+                    keyword = Request.QueryString["keyword"].ToString();
+                    param = "keyword";
                     SearchDAItems(keyword);
                 }
             }

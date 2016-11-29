@@ -1,6 +1,20 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="DATrackingWeb._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<script type="text/javascript">
+    
+    function EnterEvent(e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            searchDAItem();
+        }
+    }
+
+  function searchDAItem() {
+      window.location.href = "Search?keyword=" + document.getElementById("keyword").value;
+  }
+
+</script>
 
     <div class="jumbotron">
         <h1>ระบบตรวจติดตามครุภัณฑ์</h1>
@@ -8,12 +22,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="keyword" placeholder="ค้นหาครุภัณฑ์ด้วยรหัสเช่น CC/66-2-01/59" >
+                    <input type="text" class="form-control" id="keyword"  onkeypress="return EnterEvent(event)" placeholder="ค้นหาครุภัณฑ์ด้วยรหัสเช่น CC/66-2-01/59" >
                     <span class="input-group-btn">
-                                    <button class="btn btn-danger" type="button">
+                                    <button class="btn btn-danger" type="button" runat="server" id="btn_search"
+                                        onclick="searchDAItem();">
                                         <span class="glyphicon glyphicon-search"></span>
                                     </button>
-                    </span>
+                    </span>                   
                 </div>
                 <!-- /input-group -->
             </div>
