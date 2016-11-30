@@ -26,7 +26,9 @@ namespace DATrackingWeb
                 {
                     keyword = Request.QueryString["id"].ToString();
                     param = "id";
-                    SearchDAItems(keyword);
+                    keyword = Server.UrlDecode(keyword);
+                    Response.Redirect("Item?itemid=" + keyword);               
+                    //SearchDAItems(keyword);
                 }
 
                 if (Request.QueryString["keyword"] != null)

@@ -35,7 +35,7 @@
             <!-- /.col-lg-12 -->
         </div>
     </div>
-     <a class="btn btn-default" href="http://zxing.appspot.com/scan?ret=http%3A%2F%2Flocalhost%3A50078%2FSearch.aspx%3Fid%3D%7BCODE%7D">SCAN &raquo;</a>
+     <a class="btn btn-default" href="http://zxing.appspot.com/scan?ret=http%3A%2F%2Fmean.psu.ac.th/datracking%2FSearch.aspx%3Fid%3D%7BCODE%7D">SCAN &raquo;</a>
     <div class="row">
         <div class="col-md-4">
             <h2>Search</h2>
