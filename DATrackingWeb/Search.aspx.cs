@@ -14,41 +14,63 @@ namespace DATrackingWeb
         string param = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Page.IsPostBack) 
-            {
-                keyword = Request.Form["search_keyword"].ToString();
-                param = Request.Form["search_param"].ToString();
-                SearchDAItems(keyword);                
-            }
-            else
-            {
+            if (!IsPostBack) {
+                ViewState.Clear();
                 if (Request.QueryString["id"] != null)
                 {
                     keyword = Request.QueryString["id"].ToString();
                     param = "id";
                     keyword = Server.UrlDecode(keyword);
-                    Response.Redirect("Item?itemid=" + keyword);               
-                    //SearchDAItems(keyword);
+                    Response.Redirect("Item?itemid=" + keyword);
                 }
 
                 if (Request.QueryString["keyword"] != null)
                 {
                     keyword = Request.QueryString["keyword"].ToString();
                     param = "keyword";
-                    SearchDAItems(keyword);
+                    
+                    ShowSearchResult();
+                    
                 }
             }
         }
 
-        protected void SearchDAItems(string keyword)
+        private void ShowSearchResult()
         {
-            if (!string.IsNullOrEmpty(keyword))
+            DataTable dt;
+
+            if (ViewState["result"] == null)
             {
                 RestClient.DATrackingAPI client = new RestClient.DATrackingAPI();
-                DataTable dt = client.QuickSearch(keyword);              
-                gvSearchResult.DataSource = dt;
-                gvSearchResult.DataBind();               
+                dt = client.QuickSearch(keyword);
+                ViewState.Add("result", dt);
             }
+            else
+            {
+                dt = (DataTable)ViewState["result"];
+            }
+
+            gvSearchResult.DataSource = dt;
+            gvSearchResult.DataBind();
+        }
+
+        protected void gvSearchResult_PageIndexChanged(object sender, EventArgs e)
+        {
+             
+        }
+
+        protected void gvSearchResult_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvSearchResult.PageIndex = e.NewPageIndex;
+            ShowSearchResult();
+        }
+
+        protected void btnSearch_ServerClick(object sender, EventArgs e)
+        {
+            keyword = txtSearch.Value;
+            param = "keyword";
+            ViewState.Clear();
+            ShowSearchResult();
         }
     }
 }

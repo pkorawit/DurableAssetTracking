@@ -14,6 +14,10 @@
       window.location.href = "Search?keyword=" + document.getElementById("keyword").value;
   }
 
+  function scanQR() {
+      window.location.href = "http://zxing.appspot.com/scan?ret=http%3A%2F%2Fmean.psu.ac.th/datracking%2FSearch.aspx%3Fid%3D%7BCODE%7D";
+  }
+
 </script>
 
     <div class="jumbotron">
@@ -24,18 +28,20 @@
                 <div class="input-group">
                     <input type="text" class="form-control" id="keyword"  onkeypress="return EnterEvent(event)" placeholder="ค้นหาครุภัณฑ์ด้วยรหัสเช่น CC/66-2-01/59" >
                     <span class="input-group-btn">
-                                    <button class="btn btn-danger" type="button" runat="server" id="btn_search"
+                                    <button class="btn btn-primary" type="button" runat="server" id="btn_search"
                                         onclick="searchDAItem();">
                                         <span class="glyphicon glyphicon-search"></span>
                                     </button>
+                        <button class="btn btn-success" type="button" runat="server" id="Button1" onclick="scanQR();">
+                <span class="glyphicon glyphicon-qrcode"></span>
+             </button>
                     </span>                   
                 </div>
                 <!-- /input-group -->
             </div>
             <!-- /.col-lg-12 -->
-        </div>
-    </div>
-     <a class="btn btn-default" href="http://zxing.appspot.com/scan?ret=http%3A%2F%2Fmean.psu.ac.th/datracking%2FSearch.aspx%3Fid%3D%7BCODE%7D">SCAN &raquo;</a>
+        </div>       
+    </div>     
     <div class="row">
         <div class="col-md-4">
             <h2>Search</h2>

@@ -5,6 +5,7 @@ using System.Web;
 
 namespace DATrackingWeb.Models
 {
+    [Serializable]
     public class ItemDetail
     {
 

@@ -2,27 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
-        <div class="col-md-6">
-            <h2>รายละเอียดครุภัณฑ์
-                <asp:Label ID="lbItemIDHead" runat="server" Text="CC/??"></asp:Label>
-            </h2>
+        <div class="col-md-12">
+            <h2 class="col-md-3 col-xs-12">รายละเอียดครุภัณฑ์</h2>
+            <h2 class="col-md-9 col-xs-12"><asp:Label ID="lbItemIDHead" runat="server" Text="CC/??" CssClass="well well-sm"></asp:Label></h2>        
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <asp:DetailsView ID="dvItemDetail" runat="server" CssClass="table" OnModeChanged="dvItemDetail_ModeChanged" OnModeChanging="dvItemDetail_ModeChanging" AutoGenerateRows="False">
+            <asp:DetailsView ID="dvItemDetail" runat="server" CssClass="table col-md-12" OnModeChanged="dvItemDetail_ModeChanged" OnModeChanging="dvItemDetail_ModeChanging" AutoGenerateRows="False" GridLines="None" OnItemUpdating="dvItemDetail_ItemUpdating" OnItemUpdated="dvItemDetail_ItemUpdated">
                 <Fields>
-                    <asp:TemplateField HeaderText="ภาพ">
-                        <EditItemTemplate>
-                            <asp:TextBox ID="TextBox13" runat="server" Text='<%# Eval("ImagePath") %>'></asp:TextBox>
-                        </EditItemTemplate>
-                        <InsertItemTemplate>
-                            <asp:TextBox ID="TextBox13" runat="server" Text='<%# Eval("ImagePath") %>'></asp:TextBox>
-                        </InsertItemTemplate>
-                        <ItemTemplate>
-                            <asp:Image ID="Image1" runat="server" Height="200px" ImageUrl='<%# Eval("ImagePath", "~/photos/{0}") %>' Width="200px" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="รหัส">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" Text='<%# Bind("ItemID") %>'></asp:TextBox>
@@ -33,6 +21,8 @@
                         <ItemTemplate>
                             <asp:Label ID="Label2" runat="server" Text='<%# Bind("ItemID") %>'></asp:Label>
                         </ItemTemplate>
+                        <HeaderStyle CssClass="col-md-2" />
+                        <ItemStyle CssClass="col-md-10" />
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="คำอธิบาย">
                         <EditItemTemplate>
@@ -44,7 +34,7 @@
                         <ItemTemplate>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("Desciption") %>'></asp:Label>
                         </ItemTemplate>
-                    </asp:TemplateField>
+                    </asp:TemplateField>                                    
                     <asp:TemplateField HeaderText="ปีงบประมาณ">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" Text='<%# Bind("FiscalYear") %>'></asp:TextBox>
@@ -65,6 +55,17 @@
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label4" runat="server" Text='<%# Bind("BudgetSource") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="ราคา">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox13" runat="server" CssClass="form-control" Text='<%# Bind("Price") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                        <InsertItemTemplate>
+                            <asp:TextBox ID="TextBox13" runat="server" CssClass="form-control" Text='<%# Bind("Price") %>'></asp:TextBox>
+                        </InsertItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label13" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="กลุ่ม">
@@ -155,9 +156,28 @@
                             <asp:Label ID="Label12" runat="server" Text='<%# Bind("AdditionalDetail") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:CommandField ButtonType="Button" NewText="Add New" ShowDeleteButton="True" ShowEditButton="True" ShowInsertButton="True" UpdateText="Save" />
+                    <asp:TemplateField ShowHeader="False">
+                        <EditItemTemplate>
+                            <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Update" CssClass="btn btn-success" Text="Save" />
+                            &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Cancel" CssClass="btn btn-default" Text="Cancel" />
+                        </EditItemTemplate>
+                        <InsertItemTemplate>
+                            <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Insert" CssClass="btn btn-primary" Text="Insert" />
+                            &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Cancel" CssClass="btn btn-default" Text="Cancel" />
+                        </InsertItemTemplate>
+                        <ItemTemplate>
+                            <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" CssClass="btn btn-warning" Text="Edit" />
+                            &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="New" CssClass="btn btn-primary" Text="Add New" />
+                            &nbsp;<asp:Button ID="Button3" runat="server" CausesValidation="False" CommandName="Delete" CssClass="btn btn-danger" Text="Delete" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Fields>
             </asp:DetailsView>
         </div>
+
+        <div class="row">
+ 
+        </div>
+
     </div>
 </asp:Content>
