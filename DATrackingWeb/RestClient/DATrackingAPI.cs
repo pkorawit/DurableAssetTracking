@@ -73,5 +73,17 @@ namespace DATrackingWeb.RestClient
             }
         }
 
+        public ItemDetail InsertItemDetail(ItemDetail updatingItem)
+        {
+            var request = new RestRequest(Method.POST);
+            request.Resource = "itemdetails";            
+            request.AddJsonBody(updatingItem);
+
+            ItemDetail result = Execute<ItemDetail>(request);
+
+            return result;
+        }
+
+
     }
 }

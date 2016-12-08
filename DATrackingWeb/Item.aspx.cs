@@ -45,11 +45,6 @@ namespace DATrackingWeb
             dvItemDetail.DataBind();
         }
 
-        protected void dvItemDetail_ModeChanged(object sender, EventArgs e)
-        {
-           
-        }
-
         protected void dvItemDetail_ModeChanging(object sender, DetailsViewModeEventArgs e)
         {
             dvItemDetail.ChangeMode(e.NewMode);
@@ -59,29 +54,56 @@ namespace DATrackingWeb
         protected void dvItemDetail_ItemUpdating(object sender, DetailsViewUpdateEventArgs e)
         {
             ItemDetail updatedItem = new ItemDetail();
-            updatedItem.ItemID = e.NewValues["ItemID"].ToString();
-            updatedItem.Desciption = e.NewValues["Desciption"].ToString();
-            updatedItem.AdditionalDetail = e.NewValues["AdditionalDetail"].ToString();            
-            updatedItem.BudgetSource = e.NewValues["BudgetSource"].ToString();
-            updatedItem.FiscalYear = e.NewValues["FiscalYear"].ToString();
-            updatedItem.Group1 = e.NewValues["Group1"].ToString();
-            updatedItem.DAType1 = e.NewValues["DAType1"].ToString();
-            updatedItem.DAType2 = e.NewValues["DAType2"].ToString();
-            updatedItem.SupplierName = e.NewValues["SupplierName"].ToString();
-            updatedItem.WarrantyYear = e.NewValues["WarrantyYear"].ToString();
 
-            double price;
-            if (Double.TryParse(e.NewValues["Price"].ToString(), out price))
-                updatedItem.Price = price;
+            if(e.NewValues["ItemID"] != null)
+                updatedItem.ItemID = e.NewValues["ItemID"].ToString();
 
-            DateTime checkinDate;
-            if (DateTime.TryParse(e.NewValues["CheckInDate"].ToString(), out checkinDate))
-                updatedItem.CheckInDate = checkinDate;
+            if (e.NewValues["Desciption"] != null)
+                updatedItem.Desciption = e.NewValues["Desciption"].ToString();
 
-            DateTime warrantyExpiredDate;
-            if (DateTime.TryParse(e.NewValues["WarrantyExpiredDate"].ToString(), out warrantyExpiredDate))
-                updatedItem.WarrantyExpiredDate = warrantyExpiredDate;
-            
+            if (e.NewValues["AdditionalDetail"] != null)
+                updatedItem.AdditionalDetail = e.NewValues["AdditionalDetail"].ToString();
+
+            if (e.NewValues["BudgetSource"] != null)
+                updatedItem.BudgetSource = e.NewValues["BudgetSource"].ToString();
+
+            if (e.NewValues["FiscalYear"] != null)
+                updatedItem.FiscalYear = e.NewValues["FiscalYear"].ToString();
+
+            if (e.NewValues["Group1"] != null)
+                updatedItem.Group1 = e.NewValues["Group1"].ToString();
+
+            if (e.NewValues["DAType1"] != null)
+                updatedItem.DAType1 = e.NewValues["DAType1"].ToString();
+
+            if (e.NewValues["DAType2"] != null)
+                updatedItem.DAType2 = e.NewValues["DAType2"].ToString();
+
+            if (e.NewValues["SupplierName"] != null)
+                updatedItem.SupplierName = e.NewValues["SupplierName"].ToString();
+
+            if (e.NewValues["WarrantyYear"] != null)
+                updatedItem.WarrantyYear = e.NewValues["WarrantyYear"].ToString();
+
+            if(e.NewValues["Price"] != null) { 
+                double price;
+                if (Double.TryParse(e.NewValues["Price"].ToString(), out price))
+                    updatedItem.Price = price;
+            }
+
+            if (e.NewValues["CheckInDate"] != null)
+            {
+                DateTime checkinDate;
+                if (DateTime.TryParse(e.NewValues["CheckInDate"].ToString(), out checkinDate))
+                    updatedItem.CheckInDate = checkinDate;
+            }
+
+            if (e.NewValues["WarrantyExpiredDate"] != null)
+            {
+                DateTime warrantyExpiredDate;
+                if (DateTime.TryParse(e.NewValues["WarrantyExpiredDate"].ToString(), out warrantyExpiredDate))
+                    updatedItem.WarrantyExpiredDate = warrantyExpiredDate;
+            }
 
             RestClient.DATrackingAPI client = new RestClient.DATrackingAPI();
             bool result = client.UpdateItemDetail(updatedItem);
@@ -95,9 +117,5 @@ namespace DATrackingWeb
             
         }
 
-        protected void dvItemDetail_ItemUpdated(object sender, DetailsViewUpdatedEventArgs e)
-        {
-            
-        }
     }
 }

@@ -1,30 +1,43 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Item.aspx.cs" Inherits="DATrackingWeb.Item" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddNew.aspx.cs" Inherits="DATrackingWeb.AddNew" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
         <div class="col-md-12">
-            <h2 class="col-md-3 col-xs-12">รายละเอียดครุภัณฑ์</h2>
-            <h2 class="col-md-9 col-xs-12"><asp:Label ID="lbItemIDHead" runat="server" Text="CC/??" CssClass="well well-sm"></asp:Label></h2>        
+            <h2 class="col-md-3 col-xs-12">เพิ่มข้อมูลครุภัณฑ์</h2>
         </div>
     </div>
-    <div class="container">
+    <div class="row form-horizontal">
+        <div class="form-group">
+            <label for="keyword" class="control-label col-md-2">รหัสครุภัณฑ์</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                    <input type="text" id="txtItemID" class="form-control" placeholder="ตรวจสอบครุภัณฑ์ด้วยรหัสเช่น CC/66-2-01/59" runat="server">
+                    <span class="input-group-btn">
+                        <button runat="server" id="btnItemidCheck" class="btn btn-primary" type="button" onserverclick="btnItemidCheck_ServerClick" >Continue</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" visible="false" runat="server" id="alertDupplicated">
+        <div class="alert alert-danger alert-dismissible" role="alert" runat="server">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>รหัสครุภัณฑ์ไม่ถูกต้อง!</strong> ไม่สามารถเพิ่มรหัสครุภัณฑ์นี้ได้ เนื่องจากมีรหัสครุภัณฑ์ 
+                <a runat="server" id="linkDuplicated" href="~/Item?itemid=" class="alert-link"></a> ในฐานข้อมูลแล้ว
+        </div>
+    </div>
+    <div class="container col-md-12"  runat="server" id="panelInsert" visible="false">
         <div class="row">
-            <asp:DetailsView ID="dvItemDetail" runat="server" CssClass="table col-md-12" OnModeChanging="dvItemDetail_ModeChanging" AutoGenerateRows="False" GridLines="None" OnItemUpdating="dvItemDetail_ItemUpdating" >
+            <asp:DetailsView ID="dvItemDetail" runat="server" CssClass="table col-md-12" AutoGenerateRows="False" GridLines="None" DefaultMode="Insert" OnItemInserting="dvItemDetail_ItemInserting">
                 <Fields>
-                    <asp:TemplateField HeaderText="รหัส">
-                        <EditItemTemplate>
-                            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" Text='<%# Bind("ItemID") %>'></asp:TextBox>
-                        </EditItemTemplate>
+                   <asp:TemplateField HeaderText="รหัสครุภัณฑ์">                        
                         <InsertItemTemplate>
-                            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" Text='<%# Bind("ItemID") %>'></asp:TextBox>
-                        </InsertItemTemplate>
-                        <ItemTemplate>
-                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("ItemID") %>'></asp:Label>
-                        </ItemTemplate>
-                        <HeaderStyle CssClass="col-md-2" />
-                        <ItemStyle CssClass="col-md-10" />
+                            <asp:TextBox ID="txtNewItemID" runat="server" CssClass="form-control" Text='<%# Bind("ItemID") %>' ReadOnly="true"></asp:TextBox>
+                        </InsertItemTemplate>                       
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="คำอธิบาย">
+                        <HeaderStyle CssClass="col-md-2" />
+                        <ItemStyle CssClass="col-md-10" />
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Text='<%# Bind("Desciption") %>'></asp:TextBox>
                         </EditItemTemplate>
@@ -34,7 +47,7 @@
                         <ItemTemplate>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("Desciption") %>'></asp:Label>
                         </ItemTemplate>
-                    </asp:TemplateField>                                    
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="ปีงบประมาณ">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" Text='<%# Bind("FiscalYear") %>'></asp:TextBox>
@@ -173,10 +186,10 @@
                 </Fields>
             </asp:DetailsView>
         </div>
-
-        <div class="row">
- 
+    </div>
+    <div class="row" runat="server" id="panelSuccess" visible="false">
+        <div class="alert alert-success" role="alert">
+           บันทึกข้อมูลครุภัณฑ์ <a runat="server" id="linkNewItemID" href="~/Item?itemid=" class="alert-link"></a> เรียบร้อยแล้ว
         </div>
-
     </div>
 </asp:Content>

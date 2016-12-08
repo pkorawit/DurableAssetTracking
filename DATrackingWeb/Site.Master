@@ -65,7 +65,7 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer>
+            <footer class="col-md-12">
                 <p>&copy; <%: DateTime.Now.Year %> - ศูนย์คอมพิวเตอร์ มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตหาดใหญ่</p>
             </footer>
         </div>
