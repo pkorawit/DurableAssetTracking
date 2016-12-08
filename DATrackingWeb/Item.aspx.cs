@@ -49,6 +49,7 @@ namespace DATrackingWeb
         {
             dvItemDetail.ChangeMode(e.NewMode);
             ShowItemDetail(lbItemIDHead.Text);
+            panelSuccess.Visible = false;
         }
 
         protected void dvItemDetail_ItemUpdating(object sender, DetailsViewUpdateEventArgs e)
@@ -113,9 +114,20 @@ namespace DATrackingWeb
                 ViewState.Remove("ItemDetail");
                 dvItemDetail.ChangeMode(DetailsViewMode.ReadOnly);
                 ShowItemDetail(lbItemIDHead.Text);
+                panelSuccess.Visible = true;
             }
             
         }
 
+        protected void btnYes_Click(object sender, EventArgs e)
+        {
+            RestClient.DATrackingAPI client = new RestClient.DATrackingAPI();
+            ItemDetail result = client.DeleteItemDetail(lbItemIDHead.Text);
+            if (result != null)
+            {
+                panelEdit.Visible = false;
+                panelDeleted.Visible = true;
+            }
+        }
     }
 }

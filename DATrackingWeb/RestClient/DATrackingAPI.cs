@@ -84,6 +84,15 @@ namespace DATrackingWeb.RestClient
             return result;
         }
 
+        public ItemDetail DeleteItemDetail(string itemID)
+        {
+            var request = new RestRequest(Method.DELETE);
+            request.Resource = "itemdetails";
+            request.AddParameter("id", itemID, ParameterType.QueryString);
+
+            return Execute<ItemDetail>(request);
+        }
+
 
     }
 }

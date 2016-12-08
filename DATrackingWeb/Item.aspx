@@ -7,9 +7,9 @@
             <h2 class="col-md-9 col-xs-12"><asp:Label ID="lbItemIDHead" runat="server" Text="CC/??" CssClass="well well-sm"></asp:Label></h2>        
         </div>
     </div>
-    <div class="container">
+    <div class="container" runat="server" id="panelEdit" visible="true">
         <div class="row">
-            <asp:DetailsView ID="dvItemDetail" runat="server" CssClass="table col-md-12" OnModeChanging="dvItemDetail_ModeChanging" AutoGenerateRows="False" GridLines="None" OnItemUpdating="dvItemDetail_ItemUpdating" >
+            <asp:DetailsView ID="dvItemDetail" runat="server" CssClass="table col-md-12" OnModeChanging="dvItemDetail_ModeChanging" AutoGenerateRows="False" GridLines="None" OnItemUpdating="dvItemDetail_ItemUpdating">
                 <Fields>
                     <asp:TemplateField HeaderText="รหัส">
                         <EditItemTemplate>
@@ -167,16 +167,42 @@
                         </InsertItemTemplate>
                         <ItemTemplate>
                             <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" CssClass="btn btn-primary" Text="Edit" />
-                            &nbsp;&nbsp;<asp:Button ID="Button3" runat="server" CausesValidation="False" CommandName="Delete" CssClass="btn btn-danger" Text="Delete" />
-                        </ItemTemplate>
+                            &nbsp;&nbsp;
+                            <button runat="server" id="btnConfirmDelete" class="btn btn-danger" type="button" data-toggle="modal" data-target="#confirm-delete">Delete</button>                       
+                             </ItemTemplate>
                     </asp:TemplateField>
                 </Fields>
             </asp:DetailsView>
         </div>
-
-        <div class="row">
- 
+    </div>
+    <div class="row" runat="server" id="panelSuccess" visible="false">
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>บันทึกข้อมูลเรียบร้อยแล้ว</strong>
         </div>
-
+    </div>
+    <div class="row" runat="server" id="panelDeleted" visible="false">
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>ลบข้อมูลเรียบร้อยแล้ว</strong>
+        </div>
+    </div>
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm</h4>
+                </div>
+                <div class="modal-body">
+                    <p>ต้องการลบข้อมูลครุภัณฑ์นี้ ?</p>
+                    <p>คลิก Yes เพื่อยืนยันการลบข้อมูล</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <asp:Button ID="btnYes" runat="server" CssClass="btn btn-danger btn-ok" Text="Yes" OnClick="btnYes_Click" />
+                </div>
+            </div>
+        </div>
     </div>
 </asp:Content>
